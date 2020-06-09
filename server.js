@@ -32,11 +32,25 @@ app.get("/notes", function(req, res) {
     res.sendFile(notesHTMLPath);
 });
 
-// Get request for notes data
+// Handler for get request for notes data
 app.get("/api/notes", async function(req, res) {
     try {
+        // Read and return the content from db.JSON file
         const dbJSONContent = await readFileAsync(dbJSONPath);
         return res.json(JSON.parse(dbJSONContent));
+
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+// Handler for post request for new note
+app.post("/api/notes", async function(req, res) {
+    try {
+        const dbJSONContent = await readFileAsync(dbJSONPath);
+        const dbJSONArray = JSON.parse(dbJSONContent);
+        
+        dbJSONArray.push();
 
     } catch (error) {
         console.log(error);
