@@ -3,6 +3,7 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const util = require("util");
+const notes = require("./notes");
 
 // Promisify the readFile function
 const readFileAsync = util.promisify(fs.readFile);
@@ -47,10 +48,17 @@ app.get("/api/notes", async function(req, res) {
 // Handler for post request for new note
 app.post("/api/notes", async function(req, res) {
     try {
+        // Read in the dbJSON content, parse and store as a variable
         const dbJSONContent = await readFileAsync(dbJSONPath);
         const dbJSONArray = JSON.parse(dbJSONContent);
         
+        // Create an object for the new note
+
+
+        // Push new note object into the dbJSON variable
         dbJSONArray.push();
+
+        // Update the dbJSON file with the updated dbJSONArray
 
     } catch (error) {
         console.log(error);
