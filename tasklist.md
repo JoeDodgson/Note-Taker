@@ -1,19 +1,34 @@
-Create files
-Pseudocode JS
+<!-- Create files -->
+<!-- Pseudocode JS -->
+Restructure HTML to better display notes
 Write JS
 Deploy to heroku
 Write readme
 
 
-Pseudocode:
-Install modules:
+HTML changes:
+notes.html
+    centralise note title and note text textarea fields
+    centralise Note Taker title
+    Make save and edit icons larger and move to beside note title and text
+    Move note list below new note input
+
+index.html
+
+
+
+JS Pseudocode:
+<!-- Install modules:
     Nodemon
     Express
-    FS
-
-Require in modules
-Set up the express server
-Decide structure of db.json file. Each note must have an id
+    FS -->
+<!-- Require in modules -->
+<!-- Set up the express server
+    app = express
+    port
+    express data parsing
+    server listener -->
+<!-- Decide structure of db.json file. Each note must have an id -->
 Set up routes:
     /notes -> notes.html
     * -> index.html
