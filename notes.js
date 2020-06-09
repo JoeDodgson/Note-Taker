@@ -4,4 +4,14 @@ class Note {
         this.title = title;
         this.text = text;
     }
+
+    returnString() {
+        return JSON.parse(`{"id" : "${this.id}",
+        "title" : "${this.title}",
+        "text" : "${this.text}"}`);
+    }
 }
+
+module.exports = {
+    Note : Note
+};

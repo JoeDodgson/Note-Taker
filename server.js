@@ -4,9 +4,11 @@ const fs = require("fs");
 const path = require("path");
 const util = require("util");
 const notes = require("./notes");
+const Note = notes.Note;
 
-// Promisify the readFile function
+// Promisify the readFile and writeFile functions
 const readFileAsync = util.promisify(fs.readFile);
+const writeFileAsync = util.promisify(fs.writeFile);
 
 // Set up new express server
 const app = express();
@@ -36,12 +38,16 @@ app.get("/notes", function(req, res) {
 // Handler for get request for notes data
 app.get("/api/notes", async function(req, res) {
     try {
+        debugger
         // Read and return the content from db.JSON file
         const dbJSONContent = await readFileAsync(dbJSONPath);
-        return res.json(JSON.parse(dbJSONContent));
+        
+        // Send a 200 status
+        return res.status(200).json(JSON.parse(dbJSONContent));
 
     } catch (error) {
         console.log(error);
+        // Return something to the front end
     }
 });
 
@@ -53,15 +59,23 @@ app.post("/api/notes", async function(req, res) {
         const dbJSONArray = JSON.parse(dbJSONContent);
         
         // Create an object for the new note
-
+        const lastNote = dbJSONArray[dbJSONArray.length - 1];
+        const lastNoteId = parseInt(lastNote.id);
+        const newId = lastNoteId + 1;
+        const newNote = new Note(newId, req.body.title, req.body.text);
 
         // Push new note object into the dbJSON variable
-        dbJSONArray.push();
+        dbJSONArray.push(newNote.returnString());
 
         // Update the dbJSON file with the updated dbJSONArray
+        const dbJSONFile = await writeFileAsync(dbJSONPath, JSON.stringify(dbJSONArray));
+
+        // Send a 200 status
+        return res.status(200).send(newNote.returnString());
 
     } catch (error) {
         console.log(error);
+        // Return something to the front end
     }
 });
 
