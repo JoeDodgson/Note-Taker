@@ -20,13 +20,14 @@ const publicPath = path.join(__dirname, "public");
 // Set up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Set up the express app to serve the user the content of the public folder
 app.use(express.static(publicPath));
 
 // Routes
 // notes
 app.get("/notes", function(req, res) {
     res.sendFile(notesHTMLPath);
-    // res.sendFile(assetsPath);
 });
 
 // index
@@ -39,7 +40,6 @@ app.get("*", function(req, res) {
 app.get("/api/notes", async function(req, res) {
     try {
     const dbJSONContent = await readFileAsync(dbJSONPath);
-    console.log(dbJSONContent);
     return res.json(dbJSONContent);
 
     } catch (error) {
