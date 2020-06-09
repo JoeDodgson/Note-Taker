@@ -1,7 +1,7 @@
 <!-- Create files -->
 <!-- Pseudocode JS -->
-Restructure HTML to better display notes
 Write JS
+Restructure HTML to better display notes
 Deploy to heroku
 Write readme
 
@@ -31,9 +31,9 @@ JS Pseudocode:
     express data parsing
     server listener -->
 <!-- Decide structure of db.json file. Each note must have an id -->
-Set up routes:
+<!-- Set up routes:
     /notes -> notes.html
-    * -> index.html
+    * -> index.html -->
 Set up request handlers:
     GET /api/notes - Should read the `db.json` file and return all saved notes as JSON.
     POST /api/notes - Should receive a new note to save on the request body, add it to the `db.json` file, and then return the new note to the client.
