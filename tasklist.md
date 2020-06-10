@@ -46,8 +46,13 @@ Display a message to user to state that the note has been saved
     <!-- Amend the size of note text so that it resizes to fit content -->
     <!-- Add a placeholder div displaying success message -->
     Amend save function to:
-        Populate new note title and text in success message
-        Remove display-none class from success message
+        <!-- Empty the success message container -->
+        <!-- Populate success message container with new note title, text and new note success message -->
+    Amend other functions add display-none class to empty the success message container
+Display a message to user that note has been deleted
+    Amend delete function to:
+        Empty the success message container
+        Populate success message container with deleted note title, text and delete message
     Amend other functions add display-none class to success message
 Fix delete replacing IDs with strings
 Send error status in case of error 

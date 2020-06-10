@@ -58,11 +58,8 @@ var handleNoteSave = function() {
     title: $noteTitle.val(),
     text: $noteText.val()
   };
-
   saveNote(newNote).then(function(data) {
-    console.log(data);
-    // --------------------------------------
-    // saveSuccess();
+    saveSuccess(data);
     getAndRenderNotes();
     renderActiveNote();
   });
@@ -137,6 +134,18 @@ var getAndRenderNotes = function() {
     renderNoteList(data);
   });
 };
+
+const saveSuccess = data => {
+  
+  $saveConfirmation.empty();
+
+  const saveMessageContent = $(
+    `<p>Success! Your note was saved:</p>
+    <p id="saved-note-title">Title: ${data.title}</p>
+    <p id="saved-note-text">Text: ${data.text}</p>`);
+
+  $saveConfirmation.append(saveMessageContent);
+}
 
 $saveNoteBtn.on("click", handleNoteSave);
 $noteList.on("click", ".list-group-item", handleNoteView);
