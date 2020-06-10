@@ -39,7 +39,7 @@ html, body {
   color: #757575;
 }
 
-#save-confirmation {
+#confirmation-message {
   font-size: 1.25rem;
   padding: 10px;
   color: green;
