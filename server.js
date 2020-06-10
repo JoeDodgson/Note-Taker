@@ -38,7 +38,6 @@ app.get("/notes", function(req, res) {
 // Handler for get request for notes data
 app.get("/api/notes", async function(req, res) {
     try {
-        debugger
         // Read and return the content from db.JSON file
         const dbJSONContent = await readFileAsync(dbJSONPath);
         

@@ -24,7 +24,8 @@ html, body {
 
 .note-textarea {
   resize: none;
-  height: calc(100% - 63px);
+  height: fit-content;
+  min-height: 150px;
   padding-top: 15px;
 }
 
@@ -36,6 +37,21 @@ html, body {
 
 .note-title:read-only, .note-textarea:read-only {
   color: #757575;
+}
+
+#confirmation-message {
+  font-size: 1.25rem;
+  padding: 10px;
+  color: green;
+}
+
+#success-note-title, #success-note-text {
+  font-size: 1.1rem;
+  color: rgb(68, 68, 68);
+}
+
+.display-none {
+  display: none;
 }
 
 .list-container .card {

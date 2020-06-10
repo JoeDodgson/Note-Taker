@@ -3,6 +3,9 @@ var $noteText = $(".note-textarea");
 var $saveNoteBtn = $(".save-note");
 var $newNoteBtn = $(".new-note");
 var $noteList = $(".list-container .list-group");
+const $confirmationMessage = $("#confirmation-message");
+const $savedNoteTitle = $("#saved-note-title");
+const $savedNoteText = $("#saved-note-text");
 
 // activeNote is used to keep track of the note in the textarea
 var activeNote = {};
@@ -55,10 +58,10 @@ var handleNoteSave = function() {
     title: $noteTitle.val(),
     text: $noteText.val()
   };
-
   saveNote(newNote).then(function(data) {
     getAndRenderNotes();
     renderActiveNote();
+    saveSuccess(data);
   });
 };
 
@@ -78,17 +81,26 @@ var handleNoteDelete = function(event) {
   deleteNote(note.id).then(function() {
     getAndRenderNotes();
     renderActiveNote();
+    deleteSuccess();
   });
 };
 
 // Sets the activeNote and displays it
 var handleNoteView = function() {
+
+  // Clear out any previous confirmation message
+  $confirmationMessage.empty();
+
   activeNote = $(this).data();
   renderActiveNote();
 };
 
 // Sets the activeNote to and empty object and allows the user to enter a new note
 var handleNewNoteView = function() {
+
+  // Clear out any previous confirmation message
+  $confirmationMessage.empty();
+
   activeNote = {};
   renderActiveNote();
 };
@@ -131,6 +143,30 @@ var getAndRenderNotes = function() {
     renderNoteList(data);
   });
 };
+
+const saveSuccess = data => {
+  
+  // Clear out any previous confirmation message
+  $confirmationMessage.empty();
+
+  const saveMessageContent = $(
+    `<p>Success! Your note was saved:</p>
+    <p id="success-note-title">Title: ${data.title}</p>
+    <p id="success-note-text">Text: ${data.text}</p>`);
+
+  $confirmationMessage.append(saveMessageContent);
+}
+
+const deleteSuccess = () => {
+  
+  // Clear out any previous confirmation message
+  $confirmationMessage.empty();
+
+  const deleteMessageContent = $(
+    `<p>Success! Your note was deleted</p>`);
+
+  $confirmationMessage.append(deleteMessageContent);
+}
 
 $saveNoteBtn.on("click", handleNoteSave);
 $noteList.on("click", ".list-group-item", handleNoteView);
