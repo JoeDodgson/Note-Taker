@@ -1,18 +1,17 @@
 #Note-Taker
 
 ##Table of contents
-[Description]##description
-[Installation]##installation
-[Usage]##usage
-[Author]##author
-[Contributing]##contributing
-[License]##license
-[Tests]##tests
-[Contact]##contact
+[Description](##description)
+[Installation](##installation)
+[Usage](##usage)
+[Author](##author)
+[Contributing](##contributing)
+[License](##license)
+[Tests](##tests)
+[Contact](##contact)
 
 ##Description
 A node.js application where the user can write, save, and delete notes.
-
 ##Installation
 No installation required
 
