@@ -31,12 +31,12 @@ app.use(express.static(publicPath));
 
 // Routes
 // notes
-app.get("/notes", function(req, res) {
+app.get("/notes", (req, res) => {
     res.sendFile(notesHTMLPath);
 });
 
 // Handler for get request for notes data
-app.get("/api/notes", async function(req, res) {
+app.get("/api/notes", async (req, res) => {
     try {
         // Read and return the content from db.JSON file
         const dbJSONContent = await readFileAsync(dbJSONPath);
@@ -46,12 +46,13 @@ app.get("/api/notes", async function(req, res) {
 
     } catch (error) {
         console.log(error);
-        // Return something to the front end
+        // Return status and send error message to user
+        return res.status(404).send("Data could not be found");
     }
 });
 
 // Handler for post request for new note
-app.post("/api/notes", async function(req, res) {
+app.post("/api/notes", async (req, res) => {
     try {
         // Read in the dbJSON content, parse and store as a variable
         const dbJSONContent = await readFileAsync(dbJSONPath);
@@ -74,14 +75,13 @@ app.post("/api/notes", async function(req, res) {
 
     } catch (error) {
         console.log(error);
-        // Return something to the front end
+        // Return status and send error message to user
+        return res.status(404).send("Data could not be found");
     }
 });
 
-
-
 // Handler for delete note request
-app.delete("/api/notes/:id", async function(req, res) {
+app.delete("/api/notes/:id", async (req, res) => {
     try {
         // Store the ID of the note to be deleted
         const deleteNoteId = req.params.id;
@@ -104,17 +104,17 @@ app.delete("/api/notes/:id", async function(req, res) {
     }
     catch (error) {
         console.log(error);
-        // Return something to the front end
+        // Return status and send error message to user
+        return res.status(404).send("Data could not be found");
     }
 });
 
-
 // index
-app.get("*", function(req, res) {
+app.get("*", (req, res) => {
     res.sendFile(indexHTMLPath);
 });
 
 // Set up server listener
-app.listen(PORT, function() {
+app.listen(PORT, () => {
     console.log("Server listening on PORT " + PORT);
 });
