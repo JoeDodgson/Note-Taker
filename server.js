@@ -79,6 +79,37 @@ app.post("/api/notes", async function(req, res) {
     }
 });
 
+
+
+// Handler for delete note request
+app.delete("/api/notes/:id", async function(req, res) {
+    try {
+        // Store the ID of the note to be deleted
+        const deleteNoteId = req.params.id;
+    
+        // Read in the dbJSON content, parse and store as a variable
+        const dbJSONContent = await readFileAsync(dbJSONPath);
+        const dbJSONArray = JSON.parse(dbJSONContent);
+    
+        for (let i = deleteNoteId - 1; i < dbJSONArray.length - 1; i++) {
+            dbJSONArray[i] = dbJSONArray[i + 1];
+            dbJSONArray[i].id = i + 1;
+        }
+        dbJSONArray.pop();
+
+        // Update the dbJSON file with the updated dbJSONArray
+        const dbJSONFile = await writeFileAsync(dbJSONPath, JSON.stringify(dbJSONArray));
+
+        // Send a 200 status
+        return res.sendStatus(200);
+    }
+    catch (error) {
+        console.log(error);
+        // Return something to the front end
+    }
+});
+
+
 // index
 app.get("*", function(req, res) {
     res.sendFile(indexHTMLPath);
