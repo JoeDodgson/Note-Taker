@@ -3,7 +3,7 @@ var $noteText = $(".note-textarea");
 var $saveNoteBtn = $(".save-note");
 var $newNoteBtn = $(".new-note");
 var $noteList = $(".list-container .list-group");
-const $saveConfirmation = $("#save-confirmation");
+const $confirmationMessage = $("#confirmation-message");
 const $savedNoteTitle = $("#saved-note-title");
 const $savedNoteText = $("#saved-note-text");
 
@@ -59,9 +59,9 @@ var handleNoteSave = function() {
     text: $noteText.val()
   };
   saveNote(newNote).then(function(data) {
-    saveSuccess(data);
     getAndRenderNotes();
     renderActiveNote();
+    saveSuccess(data);
   });
 };
 
@@ -137,14 +137,15 @@ var getAndRenderNotes = function() {
 
 const saveSuccess = data => {
   
-  $saveConfirmation.empty();
+  // Clear out any previous success message
+  $confirmationMessage.empty();
 
   const saveMessageContent = $(
     `<p>Success! Your note was saved:</p>
     <p id="saved-note-title">Title: ${data.title}</p>
     <p id="saved-note-text">Text: ${data.text}</p>`);
 
-  $saveConfirmation.append(saveMessageContent);
+  $confirmationMessage.append(saveMessageContent);
 }
 
 $saveNoteBtn.on("click", handleNoteSave);
