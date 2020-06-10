@@ -58,9 +58,7 @@ app.post("/api/notes", async (req, res) => {
         const dbJSONArray = JSON.parse(dbJSONContent);
         
         // Create an object for the new note
-        const lastNote = dbJSONArray[dbJSONArray.length - 1];
-        const lastNoteId = parseInt(lastNote.id);
-        const newId = lastNoteId + 1;
+        const newId = dbJSONArray.length + 1;
         const newNote = new Note(newId, req.body.title, req.body.text);
 
         // Push new note object into dbJSONArray
