@@ -1,21 +1,11 @@
 <!-- Create files -->
 <!-- Pseudocode JS -->
 <!-- Write JS -->
-Refactor
+<!-- Refactor to ES6 -->
 Add comments
 Deploy to heroku
 Write readme
 
-Refactoring to ES6:
-    1 Change var to const or let
-    2 Use arrow functions
-    3 Template literals
-<!-- index.js - 1 -->
-<!-- index.js - 2 -->
-<!-- index.js - 3 -->
-<!-- server.js - 1 -->
-server.js - 2
-server.js - 3
 
 Optional:
 Check if db.JSON file exists. If not, create one

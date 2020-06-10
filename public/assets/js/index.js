@@ -1,3 +1,4 @@
+// Store jQuery selectors as variables
 const $noteTitle = $(".note-title");
 const $noteText = $(".note-textarea");
 const $saveNoteBtn = $(".save-note");
@@ -117,9 +118,11 @@ const handleRenderSaveBtn = () => {
 
 // Render's the list of note titles
 const renderNoteList = notes => {
+  // Clear out the note list container
   $noteList.empty();
   const noteListItems = [];
 
+  // Loop through all notes and create HTML element containing that note
   for (let i = 0; i < notes.length; i++) {
     let note = notes[i];
 
@@ -128,11 +131,14 @@ const renderNoteList = notes => {
     let $delBtn = $(
       "<i class='fas fa-trash-alt float-right text-danger delete-note'>"
     );
-
+ 
     $li.append($span, $delBtn);
+
+    // Push note HTML element into noteListItems array
     noteListItems.push($li);
   }
 
+  // Append all note HTML elements onto note list container
   $noteList.append(noteListItems);
 };
 
@@ -143,19 +149,21 @@ const getAndRenderNotes = () => {
   });
 };
 
+// Displays note save success message, including title and text of note
 const saveSuccess = data => {
   
   // Clear out any previous confirmation message
   $confirmationMessage.empty();
-
+  
   const saveMessageContent = $(
     `<p>Success! Your note was saved:</p>
     <p id="success-note-title">Title: ${data.title}</p>
     <p id="success-note-text">Text: ${data.text}</p>`);
-
-  $confirmationMessage.append(saveMessageContent);
-}
-
+    
+    $confirmationMessage.append(saveMessageContent);
+  }
+  
+// Displays note delete success message
 const deleteSuccess = () => {
   
   // Clear out any previous confirmation message
@@ -167,6 +175,7 @@ const deleteSuccess = () => {
   $confirmationMessage.append(deleteMessageContent);
 }
 
+// Click event listeners
 $saveNoteBtn.on("click", handleNoteSave);
 $noteList.on("click", ".list-group-item", handleNoteView);
 $newNoteBtn.on("click", handleNewNoteView);
