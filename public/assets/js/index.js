@@ -3,6 +3,9 @@ var $noteText = $(".note-textarea");
 var $saveNoteBtn = $(".save-note");
 var $newNoteBtn = $(".new-note");
 var $noteList = $(".list-container .list-group");
+const $saveConfirmation = $("#save-confirmation");
+const $savedNoteTitle = $("#saved-note-title");
+const $savedNoteText = $("#saved-note-text");
 
 // activeNote is used to keep track of the note in the textarea
 var activeNote = {};
@@ -57,6 +60,9 @@ var handleNoteSave = function() {
   };
 
   saveNote(newNote).then(function(data) {
+    console.log(data);
+    // --------------------------------------
+    // saveSuccess();
     getAndRenderNotes();
     renderActiveNote();
   });
