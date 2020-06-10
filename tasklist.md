@@ -54,5 +54,5 @@ JS
         Empty the success message container
         Populate success message container with deleted note title, text and delete message
     Amend other functions add display-none class to success message -->
-Fix delete replacing IDs with strings
+<!-- Fix delete replacing IDs with strings -->
 Send error status in case of error 
