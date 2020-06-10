@@ -29,8 +29,7 @@ app.use(express.json());
 app.use(express.static(publicPath));
 // app.use(express.static(dbPath));
 
-// Routes
-// notes
+// Route handler for notes page
 app.get("/notes", (req, res) => {
     res.sendFile(notesHTMLPath);
 });
@@ -41,7 +40,7 @@ app.get("/api/notes", async (req, res) => {
         // Read and return the content from db.JSON file
         const dbJSONContent = await readFileAsync(dbJSONPath);
         
-        // Send a 200 status
+        // Send a 200 status and send dbJSONContent
         return res.status(200).json(JSON.parse(dbJSONContent));
 
     } catch (error) {
@@ -64,13 +63,13 @@ app.post("/api/notes", async (req, res) => {
         const newId = lastNoteId + 1;
         const newNote = new Note(newId, req.body.title, req.body.text);
 
-        // Push new note object into the dbJSON variable
+        // Push new note object into dbJSONArray
         dbJSONArray.push(newNote.returnString());
 
-        // Update the dbJSON file with the updated dbJSONArray
+        // Update the db.JSON file with the updated data
         const dbJSONFile = await writeFileAsync(dbJSONPath, JSON.stringify(dbJSONArray));
 
-        // Send a 200 status
+        // Send a 200 status and return the new note object (as stated in requirements.md)
         return res.status(200).send(newNote.returnString());
 
     } catch (error) {
@@ -90,6 +89,7 @@ app.delete("/api/notes/:id", async (req, res) => {
         const dbJSONContent = await readFileAsync(dbJSONPath);
         const dbJSONArray = JSON.parse(dbJSONContent);
     
+        // Remove the deleted note from dbJSONArray and renumber note id's
         for (let i = deleteNoteId - 1; i < dbJSONArray.length - 1; i++) {
             dbJSONArray[i] = dbJSONArray[i + 1];
             dbJSONArray[i].id = parseInt(i) + 1;
@@ -109,7 +109,7 @@ app.delete("/api/notes/:id", async (req, res) => {
     }
 });
 
-// index
+// Route handler for index page
 app.get("*", (req, res) => {
     res.sendFile(indexHTMLPath);
 });
