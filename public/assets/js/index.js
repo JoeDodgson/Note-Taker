@@ -81,17 +81,26 @@ var handleNoteDelete = function(event) {
   deleteNote(note.id).then(function() {
     getAndRenderNotes();
     renderActiveNote();
+    deleteSuccess();
   });
 };
 
 // Sets the activeNote and displays it
 var handleNoteView = function() {
+
+  // Clear out any previous confirmation message
+  $confirmationMessage.empty();
+
   activeNote = $(this).data();
   renderActiveNote();
 };
 
 // Sets the activeNote to and empty object and allows the user to enter a new note
 var handleNewNoteView = function() {
+
+  // Clear out any previous confirmation message
+  $confirmationMessage.empty();
+
   activeNote = {};
   renderActiveNote();
 };
@@ -137,15 +146,26 @@ var getAndRenderNotes = function() {
 
 const saveSuccess = data => {
   
-  // Clear out any previous success message
+  // Clear out any previous confirmation message
   $confirmationMessage.empty();
 
   const saveMessageContent = $(
     `<p>Success! Your note was saved:</p>
-    <p id="saved-note-title">Title: ${data.title}</p>
-    <p id="saved-note-text">Text: ${data.text}</p>`);
+    <p id="success-note-title">Title: ${data.title}</p>
+    <p id="success-note-text">Text: ${data.text}</p>`);
 
   $confirmationMessage.append(saveMessageContent);
+}
+
+const deleteSuccess = () => {
+  
+  // Clear out any previous confirmation message
+  $confirmationMessage.empty();
+
+  const deleteMessageContent = $(
+    `<p>Success! Your note was deleted</p>`);
+
+  $confirmationMessage.append(deleteMessageContent);
 }
 
 $saveNoteBtn.on("click", handleNoteSave);

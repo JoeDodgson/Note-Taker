@@ -45,7 +45,7 @@ html, body {
   color: green;
 }
 
-#saved-note-title, #saved-note-text {
+#success-note-title, #success-note-text {
   font-size: 1.1rem;
   color: rgb(68, 68, 68);
 }
