@@ -92,7 +92,7 @@ app.delete("/api/notes/:id", async function(req, res) {
     
         for (let i = deleteNoteId - 1; i < dbJSONArray.length - 1; i++) {
             dbJSONArray[i] = dbJSONArray[i + 1];
-            dbJSONArray[i].id = i + 1;
+            dbJSONArray[i].id = parseInt(i) + 1;
         }
         dbJSONArray.pop();
 
