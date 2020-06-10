@@ -1,13 +1,18 @@
 <!-- Create files -->
 <!-- Pseudocode JS -->
-Write JS
-Change as much to ES6 as possible
+<!-- Write JS -->
+Refactor
+Add comments
 Deploy to heroku
 Write readme
 
+Refactoring to ES6:
+    Change var to const or let
+    Use arrow functions
+
 Optional:
 Check if db.JSON file exists. If not, create one
-Restructure HTML to better display notes
+Remove duplication in creating note object
 
 HTML changes:
 notes.html
@@ -15,13 +20,6 @@ notes.html
     centralise Note Taker title
     Make save and edit icons larger and move to beside note title and text
     Move note list below new note input
-    Remove duplication in creating note object
-
-index.html
-
-
-JS
-
 
 <!-- JS Pseudocode: -->
 <!-- Install modules:
@@ -55,4 +53,4 @@ JS
         Populate success message container with deleted note title, text and delete message
     Amend other functions add display-none class to success message -->
 <!-- Fix delete replacing IDs with strings -->
-Send error status in case of error 
+<!-- Send error status in case of error  -->
