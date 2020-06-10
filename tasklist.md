@@ -2,7 +2,7 @@
 <!-- Pseudocode JS -->
 <!-- Write JS -->
 <!-- Refactor to ES6 -->
-Add comments
+<!-- Add comments -->
 Deploy to heroku
 Write readme
 
