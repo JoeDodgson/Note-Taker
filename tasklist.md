@@ -3,14 +3,13 @@
 <!-- Write JS -->
 <!-- Refactor to ES6 -->
 <!-- Add comments -->
-Deploy to heroku
+<!-- Deploy to heroku -->
 Write readme
 
 
 Optional:
 Check if db.JSON file exists. If not, create one
 Remove duplication in creating note object
-
 HTML changes:
 notes.html
     centralise note title and note text textarea fields
