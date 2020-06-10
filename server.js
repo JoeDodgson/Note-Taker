@@ -12,7 +12,7 @@ const writeFileAsync = util.promisify(fs.writeFile);
 
 // Set up new express server
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Define paths
 const notesHTMLPath = path.join(__dirname, "public/notes.html");
